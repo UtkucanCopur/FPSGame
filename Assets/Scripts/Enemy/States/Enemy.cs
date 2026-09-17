@@ -8,15 +8,18 @@ public class Enemy : MonoBehaviour
     private StateMachine stateMachine;
     private NavMeshAgent agent;
     private GameObject player;
+    private Vector3 lastKnowPos;
 
 
     [Header("Sight Values")]
     public NavMeshAgent Agent { get => agent; }
     public GameObject Player { get => player; }
+    public Vector3 LastKnowPos { get => lastKnowPos; set => lastKnowPos = value; }
     public Pathh path;
     public float sightDistance;
     public float fieldOfView;
     public float eyeHeight;
+    public GameObject debugSphere;
 
     [Header("Weapon Values")]
     public Transform gunBarrel;
@@ -39,6 +42,7 @@ public class Enemy : MonoBehaviour
     {
         CanSeePlayer();
         currentState = stateMachine.activeState.ToString();
+        debugSphere.transform.position = LastKnowPos;
     }
 
 
